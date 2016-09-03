@@ -6,6 +6,13 @@ Description:
     killed by a player, the team they were on represented by color 
     (Green = Zombies, Blue = Survivors), and which weapon was used 
     to kill that player.
+    
+Original author:
+    Kana
+    
+Updated by:
+    Mr. Silence
+    
 *************************************************************************
 *************************************************************************
 This plugin is free software: you can redistribute 
@@ -34,7 +41,7 @@ along with this plugin.  If not, see <http://www.gnu.org/licenses/>.
 
 public Plugin:myinfo = {
     name = "[ZPS] Kill Notifications",
-    author = "Kana, updated by Silence",
+    author = "Original: Kana, Updated by: Mr. Silence",
     description = "Displays who killed a player and with what weapon.",
     version = PLUGIN_VERSION,
     url = "http://forums.alliedmods.net"
