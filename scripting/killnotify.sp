@@ -63,8 +63,7 @@ public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     {
         return Plugin_Handled;
     }
-    
-    // If the userid is invalid, we can't continue.
+    // If the userid is invalid, it must mean the player does not exist we can't continue.
     if (attacker == 0)
     {
         return Plugin_Handled;
