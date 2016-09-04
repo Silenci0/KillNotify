@@ -34,7 +34,7 @@ along with this plugin.  If not, see <http://www.gnu.org/licenses/>.
 #include <sourcemod>
 #include <colors>
 
-#define PLUGIN_VERSION "1.1"
+#define PLUGIN_VERSION "1.2"
 
 #define SURVIVORTEAM    2
 #define ZOMBIETEAM		3
@@ -76,27 +76,136 @@ public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     decl String:sWpnName[32];
     GetEventString(event, "weapon", sWpnName, sizeof(sWpnName));
     
-    // For weapons that are known to the community by other names, 
-    // find their strings then set them accordingly.
+    // A large list of weapons to rename here! 
+    // If a weapon shows up that isn't listed to be changed, the actual
+    // weapon name will show up in the player's chat.
     if (StrEqual(sWpnName,"grenade_frag"))
     {
-        sWpnName = "grenade";
+        sWpnName = "Grenade";
     }
-    if (StrEqual(sWpnName,"slam"))
+    else if (StrEqual(sWpnName,"slam"))
     {
         sWpnName = "IED";
     }
-    if (StrEqual(sWpnName,"870"))
+    else if (StrEqual(sWpnName,"870"))
     {
-        sWpnName = "remington";
+        sWpnName = "Remington 870";
     }
-    if (StrEqual(sWpnName,"spanner"))
+    else if (StrEqual(sWpnName,"spanner"))
     {
-        sWpnName = "wrench";
+        sWpnName = "Wrench";
     }
-    if (StrEqual(sWpnName,"golf"))
+    else if (StrEqual(sWpnName,"golf"))
     {
-        sWpnName = "golf club";
+        sWpnName = "Golf Club";
+    }
+    else if (StrEqual(sWpnName,"bat_wood"))
+    {
+        sWpnName = "Bat (Wood)";
+    }
+    else if (StrEqual(sWpnName,"bat_aluminum"))
+    {
+        sWpnName = "Bat (Aluminum)";
+    }
+    else if (StrEqual(sWpnName,"ak47"))
+    {
+        sWpnName = "AK-47";
+    }
+    else if (StrEqual(sWpnName,"axe"))
+    {
+        sWpnName = "Axe";
+    }
+    else if (StrEqual(sWpnName,"chair"))
+    {
+        sWpnName = "Chair";
+    }
+    else if (StrEqual(sWpnName,"crowbar"))
+    {
+        sWpnName = "Crowbar";
+    }
+    else if (StrEqual(sWpnName,"fryingpan"))
+    {
+        sWpnName = "Frying Pan";
+    }
+    else if (StrEqual(sWpnName,"glock"))
+    {
+        sWpnName = "Glock 17";
+    }
+    else if (StrEqual(sWpnName,"glock18c"))
+    {
+        sWpnName = "Glock 18c";
+    }
+    else if (StrEqual(sWpnName,"keyboard"))
+    {
+        sWpnName = "Keyboard";
+    }
+    else if (StrEqual(sWpnName,"m4"))
+    {
+        sWpnName = "M4";
+    }
+    else if (StrEqual(sWpnName,"machete"))
+    {
+        sWpnName = "Machete";
+    }
+    else if (StrEqual(sWpnName,"mp5"))
+    {
+        sWpnName = "MP5";
+    }
+    else if (StrEqual(sWpnName,"pipe"))
+    {
+        sWpnName = "Pipe";
+    }
+    else if (StrEqual(sWpnName,"plank"))
+    {
+        sWpnName = "Wooden Plank";
+    }
+    else if (StrEqual(sWpnName,"pot"))
+    {
+        sWpnName = "Pot";
+    }
+    else if (StrEqual(sWpnName,"ppk"))
+    {
+        sWpnName = "PPK";
+    }
+    else if (StrEqual(sWpnName,"revolver"))
+    {
+        sWpnName = "Revolver";
+    }
+    else if (StrEqual(sWpnName,"shovel"))
+    {
+        sWpnName = "Shovel";
+    }
+    else if (StrEqual(sWpnName,"machete"))
+    {
+        sWpnName = "Machete";
+    }
+    else if (StrEqual(sWpnName,"sledgehammer"))
+    {
+        sWpnName = "Sledgehammer";
+    }
+    else if (StrEqual(sWpnName,"supershorty"))
+    {
+        sWpnName = "Super Shorty";
+    }
+    else if (StrEqual(sWpnName,"tireiron"))
+    {
+        sWpnName = "Tire Iron";
+    }
+    else if (StrEqual(sWpnName,"torque"))
+    {
+        sWpnName = "Torque";
+    }
+    else if (StrEqual(sWpnName,"usp"))
+    {
+        sWpnName = "USP";
+    }
+    else if (StrEqual(sWpnName,"winchester"))
+    {
+        sWpnName = "Winchester";
+    }
+    else
+    {
+        // Do nothing!
     }
 
     // Display messages with colors based on team involved.
