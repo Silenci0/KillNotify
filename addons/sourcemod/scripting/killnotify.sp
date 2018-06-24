@@ -32,12 +32,13 @@ along with this plugin.  If not, see <http://www.gnu.org/licenses/>.
 #pragma semicolon 1
 
 #include <sourcemod>
-#include <colors>
+//#include <colors>
+#include <morecolors>
 
-#define PLUGIN_VERSION "1.2"
+#define PLUGIN_VERSION "1.4"
 
 #define SURVIVORTEAM    2
-#define ZOMBIETEAM		3
+#define ZOMBIETEAM      3
 
 public Plugin:myinfo = {
     name = "[ZPS] Kill Notifications",
@@ -49,7 +50,7 @@ public Plugin:myinfo = {
 
 public OnPluginStart()
 {
-    CreateConVar("sm_zpskillnotify_version", PLUGIN_VERSION, "[ZPS] Kill Notifications Version", FCVAR_PLUGIN|FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY);
+    CreateConVar("sm_zpskillnotify_version", PLUGIN_VERSION, "[ZPS] Kill Notifications Version", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY);
     HookEvent("player_death", event_PlayerDeath);
 }
 
@@ -79,144 +80,163 @@ public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     // A large list of weapons to rename here! 
     // If a weapon shows up that isn't listed to be changed, the actual
     // weapon name will show up in the player's chat.
-    if (StrEqual(sWpnName,"grenade_frag"))
+    if (StrEqual(sWpnName,"frag"))
     {
-        sWpnName = "Grenade";
+        sWpnName = "a {green}Grenade";
     }
-    else if (StrEqual(sWpnName,"slam"))
+    else if (StrEqual(sWpnName,"ied"))
     {
-        sWpnName = "IED";
+        sWpnName = "an {green}IED";
     }
     else if (StrEqual(sWpnName,"870"))
     {
-        sWpnName = "Remington 870";
+        sWpnName = "a {green}Remington 870";
     }
     else if (StrEqual(sWpnName,"spanner"))
     {
-        sWpnName = "Wrench";
+        sWpnName = "a {green}Wrench";
     }
     else if (StrEqual(sWpnName,"golf"))
     {
-        sWpnName = "Golf Club";
+        sWpnName = "a {green}Golf Club";
     }
     else if (StrEqual(sWpnName,"bat_wood"))
     {
-        sWpnName = "Bat (Wood)";
+        sWpnName = "a {green}Wooden Bat";
     }
     else if (StrEqual(sWpnName,"bat_aluminum"))
     {
-        sWpnName = "Bat (Aluminum)";
+        sWpnName = "an {green}Aluminum Bat";
     }
     else if (StrEqual(sWpnName,"ak47"))
     {
-        sWpnName = "AK-47";
+        sWpnName = "an {green}AK-47";
     }
     else if (StrEqual(sWpnName,"axe"))
     {
-        sWpnName = "Axe";
+        sWpnName = "an {green}Axe";
     }
     else if (StrEqual(sWpnName,"chair"))
     {
-        sWpnName = "Chair";
+        sWpnName = "a {green}Chair";
     }
     else if (StrEqual(sWpnName,"crowbar"))
     {
-        sWpnName = "Crowbar";
+        sWpnName = "a {green}Crowbar";
     }
     else if (StrEqual(sWpnName,"fryingpan"))
     {
-        sWpnName = "Frying Pan";
+        sWpnName = "a {green}Frying Pan";
     }
     else if (StrEqual(sWpnName,"glock"))
     {
-        sWpnName = "Glock 17";
+        sWpnName = "a {green}Glock 17";
     }
     else if (StrEqual(sWpnName,"glock18c"))
     {
-        sWpnName = "Glock 18c";
+        sWpnName = "a {green}Glock 18c";
     }
     else if (StrEqual(sWpnName,"keyboard"))
     {
-        sWpnName = "Keyboard";
+        sWpnName = "a {green}Keyboard";
     }
     else if (StrEqual(sWpnName,"m4"))
     {
-        sWpnName = "M4";
-    }
-    else if (StrEqual(sWpnName,"machete"))
-    {
-        sWpnName = "Machete";
+        sWpnName = "an {green}M4";
     }
     else if (StrEqual(sWpnName,"mp5"))
     {
-        sWpnName = "MP5";
+        sWpnName = "an {green}MP5";
     }
     else if (StrEqual(sWpnName,"pipe"))
     {
-        sWpnName = "Pipe";
+        sWpnName = "a {green}Pipe";
     }
     else if (StrEqual(sWpnName,"plank"))
     {
-        sWpnName = "Wooden Plank";
+        sWpnName = "a {green}Wooden Plank";
     }
     else if (StrEqual(sWpnName,"pot"))
     {
-        sWpnName = "Pot";
+        sWpnName = "a {green}Pot";
     }
     else if (StrEqual(sWpnName,"ppk"))
     {
-        sWpnName = "PPK";
+        sWpnName = "a {green}PPK";
     }
     else if (StrEqual(sWpnName,"revolver"))
     {
-        sWpnName = "Revolver";
+        sWpnName = "a {green}Revolver";
     }
     else if (StrEqual(sWpnName,"shovel"))
     {
-        sWpnName = "Shovel";
+        sWpnName = "a {green}Shovel";
     }
     else if (StrEqual(sWpnName,"machete"))
     {
-        sWpnName = "Machete";
+        sWpnName = "a {green}Machete";
     }
     else if (StrEqual(sWpnName,"sledgehammer"))
     {
-        sWpnName = "Sledgehammer";
+        sWpnName = "a {green}Sledgehammer";
     }
     else if (StrEqual(sWpnName,"supershorty"))
     {
-        sWpnName = "Super Shorty";
+        sWpnName = "a {green}Super Shorty";
     }
     else if (StrEqual(sWpnName,"tireiron"))
     {
-        sWpnName = "Tire Iron";
-    }
-    else if (StrEqual(sWpnName,"torque"))
-    {
-        sWpnName = "Torque";
+        sWpnName = "a {green}Tire Iron";
     }
     else if (StrEqual(sWpnName,"usp"))
     {
-        sWpnName = "USP";
+        sWpnName = "a {green}USP";
     }
     else if (StrEqual(sWpnName,"winchester"))
     {
-        sWpnName = "Winchester";
+        sWpnName = "a {green}Winchester";
+    }
+    else if (StrEqual(sWpnName,"racket"))
+    {
+        sWpnName = "a {green}Tennis Racket";
+    }
+    else if (StrEqual(sWpnName,"wrench"))
+    {
+        sWpnName = "a {green}Wrencher";
     }
     else
     {
         // Do nothing!
     }
 
-    // Display messages with colors based on team involved.
+    // Display message for zombies
     if (atkteam == ZOMBIETEAM)
     {
-        CPrintToChatAllEx(victim, "{green}%N {default}killed {teamcolor}%N {default}", attacker, victim);
+        // If the carrier is the killer, display the carrier's name in white.
+        if (IsCarrierZombie(attacker))
+        {
+            CPrintToChatAllEx(victim, "{ghostwhite}%N {default}killed {blue}%N {default}", attacker, victim);
+        }
+        // Otherwise, its a normal zombie, display killer in red.
+        else
+        {
+            CPrintToChatAllEx(victim, "{red}%N {default}killed {blue}%N {default}", attacker, victim);
+        }
         return Plugin_Handled;
     }
+    // Display message for survivors who kill the carrier (aka whitey)
     else if (atkteam == SURVIVORTEAM)
     {
-        CPrintToChatAllEx(attacker, "{teamcolor}%N {default}killed {green}%N {default}with a %s", attacker, victim, sWpnName);
+        // If the survivor kills the carrier, display victim name in white.
+        if (IsCarrierZombie(victim))
+        {
+            CPrintToChatAllEx(attacker, "{blue}%N {default}killed {ghostwhite}%N {default}with %s {default}", attacker, victim, sWpnName);
+        }
+        // Otherwise, its a normal zombie, display victim in red.
+        else
+        {
+            CPrintToChatAllEx(attacker, "{blue}%N {default}killed {red}%N {default}with %s {default}", attacker, victim, sWpnName);
+        }
         return Plugin_Handled;
     }
     else
@@ -225,4 +245,12 @@ public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     }
 
     return Plugin_Handled;
+}
+
+// Determines if player is carrier or not
+public bool:IsCarrierZombie(client) 
+{
+    decl String:zombieWeapon[32];
+    GetClientWeapon(client, zombieWeapon, sizeof(zombieWeapon));
+    return 0 == strcmp(zombieWeapon, "weapon_carrierarms");
 }
