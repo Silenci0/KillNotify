@@ -35,7 +35,7 @@ along with this plugin.  If not, see <http://www.gnu.org/licenses/>.
 //#include <colors>
 #include <morecolors>
 
-#define PLUGIN_VERSION "1.4"
+#define PLUGIN_VERSION "1.5"
 
 #define SURVIVORTEAM    2
 #define ZOMBIETEAM      3
@@ -45,7 +45,7 @@ public Plugin:myinfo = {
     author = "Original: Kana, Updated by: Mr. Silence",
     description = "Displays who killed a player and with what weapon.",
     version = PLUGIN_VERSION,
-    url = "http://forums.alliedmods.net"
+    url = "https://github.com/Silenci0/KillNotify"
 };
 
 public OnPluginStart()
@@ -78,8 +78,7 @@ public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     GetEventString(event, "weapon", sWpnName, sizeof(sWpnName));
     
     // A large list of weapons to rename here! 
-    // If a weapon shows up that isn't listed to be changed, the actual
-    // weapon name will show up in the player's chat.
+    // If a weapon shows up that isn't listed to be changed, the actual weapon name will show up in the player's chat.
     if (StrEqual(sWpnName,"frag"))
     {
         sWpnName = "a {green}Grenade";
@@ -204,9 +203,29 @@ public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     {
         sWpnName = "a {green}Wrencher";
     }
+    else if (StrEqual(sWpnName,"molotov"))
+    {
+        sWpnName = "a {green}Molotov";
+    }
+    else if (StrEqual(sWpnName,"pipebomb"))
+    {
+        sWpnName = "a {green}Pipebomb";
+    }
+    else if (StrEqual(sWpnName,"baguette"))
+    {
+        sWpnName = "a {green}Large Breadstick";
+    }
+    else if (StrEqual(sWpnName,"barricade_hammer"))
+    {
+        sWpnName = "a {green}Barricade Hammer";
+    }
+    else if (StrEqual(sWpnName,"inoculator"))
+    {
+        sWpnName = "an {green}Inoculator";
+    }
     else
     {
-        // Do nothing!
+        // Do nothing! The whole name of the weapon will be used as the output.
     }
 
     // Display message for zombies
