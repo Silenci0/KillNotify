@@ -32,15 +32,15 @@ along with this plugin.  If not, see <http://www.gnu.org/licenses/>.
 #pragma semicolon 1
 
 #include <sourcemod>
-//#include <colors>
 #include <morecolors>
 
-#define PLUGIN_VERSION "1.5"
+#pragma newdecls required
 
+#define PLUGIN_VERSION "1.6.0"
 #define SURVIVORTEAM    2
 #define ZOMBIETEAM      3
 
-public Plugin:myinfo = {
+public Plugin myinfo = {
     name = "[ZPS] Kill Notifications",
     author = "Original: Kana, Updated by: Mr. Silence",
     description = "Displays who killed a player and with what weapon.",
@@ -48,16 +48,16 @@ public Plugin:myinfo = {
     url = "https://github.com/Silenci0/KillNotify"
 };
 
-public OnPluginStart()
+public void OnPluginStart()
 {
     CreateConVar("sm_zpskillnotify_version", PLUGIN_VERSION, "[ZPS] Kill Notifications Version", FCVAR_SPONLY|FCVAR_REPLICATED|FCVAR_NOTIFY);
     HookEvent("player_death", event_PlayerDeath);
 }
 
-public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroadcast)
+public Action event_PlayerDeath(Handle event, const char[] name, bool dontBroadcast)
 {
-    new victim = GetClientOfUserId(GetEventInt(event, "userid"));
-    new attacker = GetClientOfUserId(GetEventInt(event, "attacker"));
+    int victim = GetClientOfUserId(GetEventInt(event, "userid"));
+    int attacker = GetClientOfUserId(GetEventInt(event, "attacker"));
 
     // Don't display messages based on suicides and such.
     if (victim == attacker)
@@ -71,10 +71,10 @@ public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
     }
         
     // Get the attacker's team.
-    new atkteam = GetClientTeam(attacker);
+    int atkteam = GetClientTeam(attacker);
     
     // Get the weapon used to kill the poor victim.
-    decl String:sWpnName[32];
+    char sWpnName[32];
     GetEventString(event, "weapon", sWpnName, sizeof(sWpnName));
     
     // A large list of weapons to rename here! 
@@ -267,9 +267,9 @@ public Action:event_PlayerDeath(Handle:event, const String:name[], bool:dontBroa
 }
 
 // Determines if player is carrier or not
-public bool:IsCarrierZombie(client) 
+public bool IsCarrierZombie(int client) 
 {
-    decl String:zombieWeapon[32];
+    char zombieWeapon[32];
     GetClientWeapon(client, zombieWeapon, sizeof(zombieWeapon));
     return 0 == strcmp(zombieWeapon, "weapon_carrierarms");
 }
